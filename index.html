@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회의 타임박싱 타이머</title>
-    <meta name="description" content="회의 시간 초과를 방지하는 실시간 아젠다 및 1인 발언 타임박싱 타이머.">
+    <title>회의 타임박싱 타이머 | 아젠다 발언 시간 초과 방지</title>
+    <meta name="description" content="회의 시간 초과를 방지하는 실시간 아젠다 및 1인 발언 타임박싱 타이머입니다.">
     <link rel="canonical" href="https://meeting-timebox-timer.enjoy-onepage.com/">
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta property="og:title" content="회의 타임박싱 타이머">
+    <meta property="og:title" content="회의 타임박싱 타이머 | 아젠다 발언 시간 초과 방지">
     <meta property="og:description" content="실시간 아젠다 시간 분배 및 1인 발언 타임박싱 타이머. 화면 공유 최적화 HUD와 비프음 알림 제공.">
     <meta property="og:image" content="https://meeting-timebox-timer.enjoy-onepage.com/og-image.png">
     <meta property="og:url" content="https://meeting-timebox-timer.enjoy-onepage.com/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="회의 타임박싱 타이머">
+    <meta name="twitter:title" content="회의 타임박싱 타이머 | 아젠다 발언 시간 초과 방지">
     <meta name="twitter:description" content="실시간 아젠다 시간 분배 및 1인 발언 타임박싱 타이머">
     <link rel="stylesheet" href="./style.css">
     <style id="mobile-hardening-shield">
@@ -493,11 +493,11 @@
             document.getElementById('hudTotalTime').textContent = formatTime(totalRemaining);
             document.getElementById('hudSpeakerTime').textContent = formatTime(speakerRemaining);
 
-            const totalPct = Math.min(100, Math.max(0, ((totalDuration - totalRemaining) / totalDuration) * 100));
+            const totalPct = totalDuration > 0 ? Math.min(100, Math.max(0, ((totalDuration - totalRemaining) / totalDuration) * 100)) : 0;
             document.getElementById('totalProgressBar').style.width = totalPct + '%';
             document.getElementById('totalProgressText').textContent = Math.round(totalPct) + '%';
 
-            const spkPct = Math.min(100, Math.max(0, ((speakerDuration - speakerRemaining) / speakerDuration) * 100));
+            const spkPct = speakerDuration > 0 ? Math.min(100, Math.max(0, ((speakerDuration - speakerRemaining) / speakerDuration) * 100)) : 0;
             document.getElementById('speakerProgressBar').style.width = spkPct + '%';
             document.getElementById('speakerProgressText').textContent = Math.round(spkPct) + '%';
 
