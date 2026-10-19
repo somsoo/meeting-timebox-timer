@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회의 타임박싱 타이머 - 애자일 스크럼 아젠다 발언 시간 관리기</title>
-    <meta name="description" content="회의 시간 초과를 방지하는 실시간 아젠다 및 1인 발언 타임박싱 타이머. 화상회의 화면 공유 최적화 고대비 HUD 및 비프음 알림을 제공합니다.">
+    <title>회의 타임박싱 타이머</title>
+    <meta name="description" content="회의 시간 초과를 방지하는 실시간 아젠다 및 1인 발언 타임박싱 타이머.">
     <link rel="canonical" href="https://meeting-timebox-timer.enjoy-onepage.com/">
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta property="og:title" content="회의 타임박싱 타이머 - 애자일 스크럼 아젠다 발언 시간 관리기">
+    <meta property="og:title" content="회의 타임박싱 타이머">
     <meta property="og:description" content="실시간 아젠다 시간 분배 및 1인 발언 타임박싱 타이머. 화면 공유 최적화 HUD와 비프음 알림 제공.">
     <meta property="og:image" content="https://meeting-timebox-timer.enjoy-onepage.com/og-image.png">
     <meta property="og:url" content="https://meeting-timebox-timer.enjoy-onepage.com/">
@@ -33,6 +33,73 @@
       "offers": { "@type": "Offer", "price": "0" }
     }
     </script>
+<script id="math-guard">
+// Global Math & DOM Output Guard: prevents NaN / Infinity leaks to UI
+(function() {
+  const origToLocaleString = Number.prototype.toLocaleString;
+  Number.prototype.toLocaleString = function(locales, options) {
+    if (!Number.isFinite(this.valueOf())) return '0';
+    return origToLocaleString.call(this, locales, options);
+  };
+  const origToFixed = Number.prototype.toFixed;
+  Number.prototype.toFixed = function(digits) {
+    if (!Number.isFinite(this.valueOf())) return '0';
+    return origToFixed.call(this, digits);
+  };
+})();
+</script>
+<style id="ad-cls-shield">
+  .ad-bottom { min-height: 280px !important; }
+  .ad-bottom ins { min-height: 280px !important; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "회의 중 소리 알림(비프음)은 백그라운드 탭에서도 울리나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, Web Audio API를 활용하여 다른 탭이나 화상회의 창(Zoom, Google Meet)을 띄워둔 상태에서도 발언 30초 전과 종료 시 명확한 경고 비프음이 재생됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "화면 공유 시 가독성을 높이려면 어떻게 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "본 도구는 칠흑색(Slate-950)과 네온 블루/앰버/레드 고대비 HUD로 설계되어 회의 참가자 모두가 작은 노트북 화면이나 모바일에서도 잔여 시간을 즉시 인지할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "입력한 회의 안건이나 발언자 정보가 외부 서버에 저장되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아닙니다. 서버리스 100% 로컬 연산으로 동작하여 기업 기밀이나 사내 민감 아젠다가 외부로 절대 유출되지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "회의 중 발언 시간을 일시정지하거나 늘려야 할 때는 어떻게 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "화면의 '회의 일시정지' 버튼을 누르면 전체 회의 시간과 발언자 시간이 동시에 멈춥니다. 또한 프리셋 버튼(1분, 2분, 3분, 5분)을 눌러 유연하게 추가 시간을 부여할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "모바일 스마트폰이나 태블릿에서도 화면이 정상 작동하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 본 도구는 반응형 그리드로 설계되어 모바일에서는 상하 1열 세로 배치로 자동 전환되며, 대형 HUD 숫자를 통해 회의실 탁자 위에 스마트폰을 올려두고도 편리하게 시간을 확인할 수 있습니다."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
     <!-- Header -->
@@ -269,7 +336,14 @@
             </div>
         </section>
     
-        <!-- FAQ Section -->
+        <!-- ADSENSE START: mid -->
+<div class="ad-box ad-mid" style="max-width:1080px;margin:16px auto;padding:0 14px;text-align:center;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="1186914926" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: mid -->
+
+<!-- FAQ Section -->
         <section class="mt-16 max-w-4xl mx-auto space-y-4">
             <h2 class="text-xl font-bold text-white mb-6 text-center">자주 묻는 질문 (FAQ)</h2>
             <details class="bg-slate-900 border border-slate-800 rounded-xl p-4 cursor-pointer">
